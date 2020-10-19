@@ -7,50 +7,22 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   Animated,
+  Keyboard,
+  TouchableWithoutFeedback,
+  TextInput,
+  ScrollView,
+  FlatList
 } from "react-native";
 
-export default function Test() {
-  // const [box, setBox] = useState(styles.redBox);
-
-  console.log("function");
-  const changeBox = () => {
-    // if (box == styles.redBox) {
-    //   setBox(styles.blueBox);
-    // } else {
-    //   setBox(styles.redBox);
-    // }
-    console.log("changeBox");
-    console.log(widthValue);
-    console.log("to 100");
-    Animated.timing(widthValue, {
-      toValue: 100,
-      duration: 2000,
-    }).start();
-  };
-  const widthValue = new Animated.Value(0);
-  const [test, setTest] = useState(0);
-  const testValue = () => {
-    const test1 = test + 1;
-    setTest(test1);
-  };
-  console.log(widthValue);
-  useEffect(() => {
-    changeBox();
-  }, []);
+import {connect} from "react-redux";
+import Task from "./TodoApp/Task";
+const renderTask=({item})=><Task name={item.name}/>
+ function Test(props) {
   return (
-    <>
-      <View style={{ alignItems: "center" }}>
-        <Animated.View
-          style={[styles.redBox, { width: widthValue }]}
-        ></Animated.View>
-
-        <Button title="Click" onPress={changeBox} />
-
-        {/* <Text>{widthValue}</Text> */}
-        <Text>{test}</Text>
-        <Button title="Click2" onPress={testValue} />
-      </View>
-    </>
+   
+    <View style={{backgroundColor:"green"}}>
+     <FlatList removeClippedSubviews={true} data={props.listAll} renderItem={renderTask} keyExtractor={(item)=>item.id}/>
+     </View>
   );
 }
 const styles = StyleSheet.create({
@@ -78,4 +50,34 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowOffset: { width: 10, height: 10 },
   },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
+const mapStateToProps =(state)=>{
+  return {
+    //key:value
+    //key la props cua component: value la state duoc luu tren store
+    taskList:state.taskListReducer.taskList,
+    todayList:state.taskListReducer.todayList,
+    listAll:state.taskListReducer.listAll
+  }
+}
+
+const mapDisPatchToProps=(dispatch)=>{
+  return {
+    //key: value
+    //key la props cua component: value la phuong thuc gui action len store
+    changeTab:()=>{
+      const action ={
+        type:"CHANGE_TAB",
+        // payload :status,
+      };
+      console.log("pressButton");
+      dispatch(action);
+    }
+  }
+}
+export default connect(mapStateToProps,mapDisPatchToProps)(Test);
