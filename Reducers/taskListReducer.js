@@ -73,7 +73,6 @@ const taskListReducer =(state=initialState,action)=>{
             }else{
                 state.taskList=true;
             }
-            console.log("reducer"+state.taskList)
             return {...state};
         }
         default:

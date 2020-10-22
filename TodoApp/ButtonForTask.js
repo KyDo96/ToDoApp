@@ -4,14 +4,15 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
+import {connect} from "react-redux";
 
-export default function ButtonForTask(props) {
+function ButtonForTask(props) {
     const styles = StyleSheet.create({
         button:{
-          width:35,
-          height:35,
+          width:props.size,
+          height:props.size,
           backgroundColor:"#FFB842",
-          borderRadius:17.5,
+          borderRadius:props.size/2,
           shadowOffset:{width:3,height:3},
             shadowOpacity:1,
             justifyContent:"center",
@@ -21,9 +22,22 @@ export default function ButtonForTask(props) {
       })
   return (
     <>
-        <TouchableOpacity style={styles.button}>
-        <SimpleLineIcons name={props.icon} size={25} color="white" />
+        <TouchableOpacity onPress={()=>{if(props.icon==="arrow-right-circle"){
+          props.changeScreen(2)}}} style={styles.button}>
+        <SimpleLineIcons name={props.icon} size={props.size*2/3} color="white" />
         </TouchableOpacity>
     </>
   );
 }
+const mapDispatchToProps=(dispatch)=>{
+  return {
+      changeScreen:(index)=>{
+          const action={
+              type:"CHANGE_SCREEN",
+              index,
+          }
+          dispatch(action)
+      }
+  }
+}
+export default connect(null,mapDispatchToProps)(ButtonForTask)

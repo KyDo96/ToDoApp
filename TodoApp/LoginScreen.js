@@ -30,7 +30,7 @@ export default function LoginScreen({navigation}) {
             <TouchableOpacity>
               <Text style={{color:"#ffffff90",fontSize:17,paddingLeft:10}} >Quên mật khẩu?</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={{backgroundColor:"#FFB842",height:45,width:110,justifyContent:"center",alignItems:"center",borderRadius:5,shadowOpacity:0.7,shadowOffset:{width:3,height:3}}} >
+              <TouchableOpacity onPress={()=>{navigation.navigate('UserPage')}} style={{backgroundColor:"#FFB842",height:45,width:110,justifyContent:"center",alignItems:"center",borderRadius:5,shadowOpacity:0.7,shadowOffset:{width:3,height:3}}} >
                 <Text style={{color:"white",fontSize:17}}>Đăng nhập</Text>
               </TouchableOpacity>
           </View>

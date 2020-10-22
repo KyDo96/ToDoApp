@@ -4,7 +4,8 @@ import {
   Text,
   View,
   FlatList,
-  ScrollView
+  ScrollView,
+  Button
 } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import BackgroundScreen from "./BackgroundScreen";
@@ -15,6 +16,9 @@ import Test from "../Test";
 
 
 const TaskListScreen=(props)=> {
+  const changeToDetail=()=>{
+      props.navigation.navigate('Detail')
+  }
     const [currentDate, setCurrentDate] = useState('');
   const stringDayOfWeek = (day)=>{
     switch (day){
@@ -58,7 +62,7 @@ const TaskListScreen=(props)=> {
       return <TabButton shadowWidth={4} shadowHeight={-4} tittle="Tất cả" topDis={0} leftDis="65%"/>
     }
   }
-  const renderTask=({item})=><Task name={item.name}/>
+  const renderTask=({item})=><Task changeToDetail={changeToDetail} name={item.name}/>
   
   const renderTaskList=()=>{
     if(props.taskList){
@@ -68,6 +72,7 @@ const TaskListScreen=(props)=> {
     }
   }
   return (
+    
     <>
         <View style={{backgroundColor:"#FFB842",height:"28%",width:"100%",flexDirection:"row",justifyContent:"space-between"}}>
             <View style={{paddingTop:30,paddingLeft:30}}>
@@ -101,7 +106,7 @@ const styles = StyleSheet.create({
     shadowOpacity:0.5,
     alignItems:"center",
     paddingTop:20,
-    paddingBottom:30
+    paddingBottom:70
   }
 })
 
@@ -124,7 +129,6 @@ const mapDisPatchToProps=(dispatch)=>{
         type:"CHANGE_TAB",
         // payload :status,
       };
-      console.log("pressButton");
       dispatch(action);
     }
   }

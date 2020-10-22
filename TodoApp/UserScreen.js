@@ -17,30 +17,30 @@ import InputPickDate from "./InputPickDate";
 import InputTask from "./InputTask";
 
 
-export default function CreateTaskScreen(props) {
+export default function UserScreen(props) {
    
  
   return (
     <BackgroundScreen>
         <View style={{backgroundColor:"#FFB842",width:"100%",height:"12%",alignItems:"center",justifyContent:"center",flexDirection:"row"}}>
-          
             <SimpleLineIcons style={{paddingBottom:0}} name="emotsmile" size={30} color="black" />
-            <Text style={{fontFamily:"dancing-script",fontSize:40,color:"black"}}>Tạo một nhiệm vụ mới</Text>
+            <Text style={{fontFamily:"dancing-script",fontSize:40,color:"black"}}>Thông tin người dùng</Text>
             </View>
         <View style={styles.table}>
-          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Ngày tạo</Text>
+          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Tên đăng nhập</Text>
            <InputTask heightOfText={25} fontSize={20} multiLine={false} showButton={false}/>
-          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Tên nhiệm vụ</Text>
+          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Tiến độ thực hiện nhiệm vụ trong hôm nay</Text>
            <InputTask heightOfText={25} fontSize={20} multiLine={false} showButton={false}/>
-          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Chi tiết</Text>
-           <InputTask heightOfText={75} fontSize={20} multiLine={true} showButton={false}/>
-          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Ngày thực hiện</Text>
-           <InputTask heightOfText={25} fontSize={20} multiLine={false} showButton={false}/>
-          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Chế độ nhắc</Text>
+           <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Tiến độ thực hiện các nhiệm vụ đã lưu</Text>
            <InputTask heightOfText={25} fontSize={20} multiLine={false} showButton={false}/>
            <View style={{paddingRight:20,paddingTop:20,alignItems:"flex-end"}}>
-           <TouchableOpacity style={{backgroundColor:"#FFB842",height:45,width:110,justifyContent:"center",alignItems:"center",borderRadius:5,shadowOpacity:0.7,shadowOffset:{width:4,height:4}}} >
-                <Text style={{color:"white",fontSize:17}}>Tạo nhiệm vụ</Text>
+           <TouchableOpacity onPress={props.logOut} style={{backgroundColor:"#FFB842",height:45,width:110,justifyContent:"center",alignItems:"center",borderRadius:5,shadowOpacity:0.7,shadowOffset:{width:4,height:4}}} >
+                <Text style={{color:"black",fontSize:17}}>Đăng xuất</Text>
+          </TouchableOpacity>
+          </View>
+          <View style={{paddingRight:20,paddingTop:20,alignItems:"flex-end"}}>
+           <TouchableOpacity onPress={props.logOut} style={{backgroundColor:"#FFB842",height:45,width:110,justifyContent:"center",alignItems:"center",borderRadius:5,shadowOpacity:0.7,shadowOffset:{width:4,height:4}}} >
+                <Text style={{color:"black",fontSize:17}}>Đổi mật khẩu</Text>
           </TouchableOpacity>
           </View>
         </View >

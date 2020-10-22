@@ -5,7 +5,7 @@ import ButtonForTask from './ButtonForTask'
 export default function InputTask(props) {
     const showButton=()=>{
         if(props.showButton){
-            return <ButtonForTask icon="pencil"/>
+            return <ButtonForTask size={25} icon="pencil"/>
         }
     }
     const styles = StyleSheet.create({
@@ -33,7 +33,7 @@ export default function InputTask(props) {
       })
     return (
         <View style={styles.containner}>
-            <TextInput multiline={props.multiLine} style={styles.text}/>
+            <TextInput editable={true} multiline={props.multiLine} style={styles.text}/>
             {showButton()}
         </View>
     )

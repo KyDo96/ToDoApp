@@ -7,9 +7,9 @@ export default function Task(props) {
         <View style={styles.containner}>
             <Text style={styles.text}>{props.name}</Text>
             <View style={{flexDirection:"row"}}>
-            <ButtonForTask icon="check"/>
-            <ButtonForTask icon="trash"/>
-            <ButtonForTask icon="arrow-right-circle"/>
+            <ButtonForTask size={35} icon="check"/>
+            <ButtonForTask size={35} icon="trash"/>
+            <ButtonForTask changeToDetail={props.changeToDetail} size={35} icon="arrow-right-circle"/>
             </View>
         </View>
     )

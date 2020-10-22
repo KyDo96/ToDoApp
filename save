@@ -42,3 +42,35 @@
             {/* {tabBehind()} */}
         </View >
        
+
+
+        <Provider store={store}>
+    {/* <TaskListScreen/> */}
+    {/* <CreateTaskScreen/> */}
+    <DetailScreen/>
+    </Provider>
+
+
+    <NavigationContainer>
+      <Tab.Navigator initialRouteName='TaskList'
+      barStyle={{
+          backgroundColor: '#343B45',
+                  borderTopWidth:0,
+        shadowOpacity:0
+          // tabStyle:{backgroundColor:'#FFB842',margin:10,shadowOpacity:1,width:50}
+      }}
+      >
+        
+        <Tab.Screen name="CreateTask" component={CreateTaskScreen} 
+        options={{tabBarLabel:false,
+          tabBarIcon: () => (
+            // <MaterialCommunityIcons name="home" color={color} size={26} />
+            <TouchableOpacity activeOpacity={0.5} style={{width:200,height:200,backgroundColor:'white'}}/> 
+            // <Text>kydo</Text></View>
+          ),
+        }}
+        />
+        <Tab.Screen name="TaskList" component={TaskListScreen} />
+        <Tab.Screen name="Detail" component={DetailScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>

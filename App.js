@@ -18,6 +18,9 @@ import {createStore} from "redux";
 import rootReducer from "./Reducers";
 import {Provider} from "react-redux";
 import CreateTaskScreen from './TodoApp/CreateTaskScreen';
+import DetailScreen from './TodoApp/DetailScreen';
+import UserComponent from './TodoApp/UserComponent';
+import UserScreen from './TodoApp/UserScreen';
 const store = createStore(rootReducer)
 const Stack = createStackNavigator();
 
@@ -36,21 +39,16 @@ export default function App() {
   console.log(fontLoad);
   if(fontLoad){
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator screenOptions={{headerShown: false}}>
-    //     <Stack.Screen name="LoginPage" component={LoginScreen} />
-    //     <Stack.Screen name="SignupPage" component={SignupScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    // <TaskListScreen/>
     <Provider store={store}>
-    {/* <TaskListScreen/> */}
-    <CreateTaskScreen/>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="LoginPage" component={LoginScreen} />
+        <Stack.Screen name="SignupPage" component={SignupScreen} />
+        <Stack.Screen name="UserPage" component={UserComponent}/>
+      </Stack.Navigator>
+    </NavigationContainer>
     </Provider>
   );
   }else{
     return null}
 }
-
-const styles = StyleSheet.create({
-});
