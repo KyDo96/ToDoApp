@@ -1,8 +1,18 @@
 import React from 'react'
 import { StyleSheet, View,Text,TextInput } from 'react-native'
 import ButtonForTask from './ButtonForTask'
-
-export default function InputTask(props) {
+import {connect} from 'react-redux'
+function InputTask(props) {
+    const setEditable=()=>{
+        if(props.showDate){
+            return false;
+        }else{return true}
+    }
+    const showDate=()=>{
+        if(props.showDate){
+            return props.currentDate;
+        }else{return null}
+    }
     const showButton=()=>{
         if(props.showButton){
             return <ButtonForTask size={25} icon="pencil"/>
@@ -33,10 +43,22 @@ export default function InputTask(props) {
       })
     return (
         <View style={styles.containner}>
-            <TextInput editable={true} multiline={props.multiLine} style={styles.text}/>
+            <TextInput value={showDate()} editable={setEditable()} multiline={props.multiLine} style={styles.text}/>
             {showButton()}
         </View>
     )
     
 }
+const mapStateToProps =(state)=>{
+    return {
+      currentDate:state.taskListReducer.currentDate
+    }
+  }
+  
+  const mapDisPatchToProps=(dispatch)=>{
+    return {
+      
+    }
+  }
+  export default connect(mapStateToProps,mapDisPatchToProps)(InputTask);
 

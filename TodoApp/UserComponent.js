@@ -13,12 +13,23 @@ import { TouchableOpacity } from
 'react-native-gesture-handler';
 import MyNavigation from './MyNavigation'
 import UserScreen from './UserScreen';
+import {connect} from 'react-redux';
 const Tab = createMaterialBottomTabNavigator();
 
-export default function UserComponent(props) {
+
+function UserComponent(props) {
   const logOut = ()=>{
     props.navigation.navigate('LoginPage')
   }
+  useEffect(() => {
+    let date = new Date().getDate();
+    let month = new Date().getMonth()+1;
+    let year = new Date().getFullYear();
+    props.setCurrentDate(
+      date + '/' + month + '/' + year
+    );
+  }, []);
+  
   return (
     <MyNavigation styleTab={[
       {height:50,
@@ -84,3 +95,14 @@ export default function UserComponent(props) {
 
 const styles = StyleSheet.create({
 });
+const mapDispatchToState=(dispatch)=>{
+  return{ setCurrentDate:(date)=>{
+    const action={
+      type:'SET_DATE',
+      payload:date
+    }
+    dispatch(action)
+  }
+}
+}
+export default connect(null,mapDispatchToState)(UserComponent)

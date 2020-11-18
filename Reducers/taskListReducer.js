@@ -1,5 +1,7 @@
 const initialState={
     taskList:true,
+    user:'',
+    currentDate:'',
     todayList:[
         {
             id:1,
@@ -74,6 +76,14 @@ const taskListReducer =(state=initialState,action)=>{
                 state.taskList=true;
             }
             return {...state};
+        }
+        case "SAVE_USER":{
+            state.user=action.payload;
+            return{...state}
+        }
+        case 'SET_DATE':{
+            state.currentDate=action.payload;
+            return{...state}
         }
         default:
             return state;

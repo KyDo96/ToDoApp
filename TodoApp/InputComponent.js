@@ -5,13 +5,14 @@ import {
     TextInput,
   } from "react-native";
   import { SimpleLineIcons } from "@expo/vector-icons";
+
 export default function InputComponent(props) {
     return (
         <View style={styles.input}>
             <View style={styles.iconBackground}>
               <SimpleLineIcons name={props.icon} size={20} color="white"/>
               </View>
-          <TextInput secureTextEntry={props.hideText} style={styles.textInput} placeholder={props.placeholder}  placeholderTextColor="#ffffff50" />
+          <TextInput onChangeText={(value)=>{if(props.getValue){props.handleOnchangeText(value,props.name)}}} secureTextEntry={props.hideText} style={styles.textInput} placeholder={props.placeholder}  placeholderTextColor="#ffffff50" />
           </View>
     )
 }

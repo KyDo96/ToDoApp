@@ -20,34 +20,7 @@ const TaskListScreen=(props)=> {
       props.navigation.navigate('Detail')
   }
     const [currentDate, setCurrentDate] = useState('');
-  const stringDayOfWeek = (day)=>{
-    switch (day){
-        case 0:
-            return "Chủ nhật";
-        case 1:
-            return "Thứ hai";
-        case 2:
-            return "Thứ ba";
-        case 3:
-            return "Thứ tư";
-        case 4:
-            return "Thứ năm";
-        case 5:
-            return "Thứ sáu";
-        case 6:
-            return "Thứ bảy";
-    }
-  }
-  useEffect(() => {
-    var date = new Date().getDate();
-    var month = new Date().getMonth()+1;
-    var year = new Date().getFullYear();
-    var dayOfWeek = new Date().getDay();
-    var stringDay= stringDayOfWeek(dayOfWeek);
-    setCurrentDate(
-      stringDay+','+ date + '/' + month + '/' + year 
-    );
-  }, []);
+  
   const tabBehind=()=>{
     if(props.taskList){
       return <TabButton changeTab={props.changeTab} shadowWidth={0} shadowHeight={0} tittle="Tất cả" topDis="100%"  leftDis="65%"/>
@@ -71,16 +44,41 @@ const TaskListScreen=(props)=> {
       return <FlatList removeClippedSubviews={true} data={props.listAll} renderItem={renderTask} keyExtractor={(item)=>item.id}/>
     }
   }
+  const[stringDate,setStringDate]=useState('')
+  const stringDayOfWeek = (day)=>{
+    switch (day){
+        case 0:
+            return "Chủ nhật";
+        case 1:
+            return "Thứ hai";
+        case 2:
+            return "Thứ ba";
+        case 3:
+            return "Thứ tư";
+        case 4:
+            return "Thứ năm";
+        case 5:
+            return "Thứ sáu";
+        case 6:
+            return "Thứ bảy";
+    }
+  };
+  useEffect(() => {
+    var dayOfWeek = new Date().getDay();
+    // stringDate= stringDayOfWeek(dayOfWeek);
+   setStringDate(stringDayOfWeek(dayOfWeek))
+  }, []);
   return (
-    
     <>
         <View style={{backgroundColor:"#FFB842",height:"28%",width:"100%",flexDirection:"row",justifyContent:"space-between"}}>
             <View style={{paddingTop:30,paddingLeft:30}}>
             <Text style={{fontFamily:"dancing-script",color:"white"}}>
             <Text style={{fontSize:28}}>Xin chào,{"\n"}</Text>
-            <Text style={{fontSize:40,color:"black"}}>KyDo{"\n"}</Text>
+  <Text style={{fontSize:40,color:"black"}}>
+    {/* {props.user[0].get('ten')} */}
+    {"\n"}</Text>
             <Text style={{fontSize:17,lineHeight:25}}>
-            {currentDate}
+            {stringDate+', '+props.currentDate}
             </Text>
             </Text>
             </View>
@@ -116,7 +114,9 @@ const mapStateToProps =(state)=>{
     //key la props cua component: value la state duoc luu tren store
     taskList:state.taskListReducer.taskList,
     todayList:state.taskListReducer.todayList,
-    listAll:state.taskListReducer.listAll
+    listAll:state.taskListReducer.listAll,
+    user:state.taskListReducer.user,
+    currentDate:state.taskListReducer.currentDate
   }
 }
 

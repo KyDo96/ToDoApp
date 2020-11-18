@@ -74,3 +74,38 @@
         <Tab.Screen name="Detail" component={DetailScreen} />
       </Tab.Navigator>
     </NavigationContainer>
+
+
+    const MyFirstClass = Parse.Object.extend("MyFirstClass");
+const myFirstClass1 = new MyFirstClass();
+
+myFirstClass1.set("ky", "sdcsdfsdfd");
+myFirstClass1.save()
+.then((object) => {
+  // Success
+  alert('New object created with objectId: ' + object.id);
+}, (error) => {
+  // Save fails
+  alert('Failed to create new object, with error code: ' + error.message);
+});
+const deleteItem= async() => {
+  const query = new Parse.Query("MyFirstClass");
+  const object = await query.get('5JgFTjlskA');
+  try{
+    object.destroy();
+  } catch (e){
+    alert(e)
+  }
+}
+deleteItem()
+
+
+()=>{navigation.navigate('UserPage')}
+
+ {/* <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="LoginPage" component={LoginScreen} />
+        <Stack.Screen name="SignupPage" component={SignupScreen} />
+        <Stack.Screen name="UserPage" component={UserComponent}/>
+      </Stack.Navigator>
+    </NavigationContainer> */}

@@ -17,7 +17,7 @@ import InputPickDate from "./InputPickDate";
 import InputTask from "./InputTask";
 
 
-export default function CreateTaskScreen(props) {
+function CreateTaskScreen(props) {
    
  
   return (
@@ -28,8 +28,8 @@ export default function CreateTaskScreen(props) {
             <Text style={{fontFamily:"dancing-script",fontSize:40,color:"black"}}>Tạo một nhiệm vụ mới</Text>
             </View>
         <View style={styles.table}>
-          <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Ngày tạo</Text>
-           <InputTask heightOfText={25} fontSize={20} multiLine={false} showButton={false}/>
+          <Text  style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Ngày tạo</Text>
+           <InputTask showDate={true} heightOfText={25} fontSize={20} multiLine={false} showButton={false}/>
           <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Tên nhiệm vụ</Text>
            <InputTask heightOfText={25} fontSize={20} multiLine={false} showButton={false}/>
           <Text style={{fontSize:17,paddingLeft:20,paddingBottom:3}}>Chi tiết</Text>
@@ -57,3 +57,15 @@ const styles = StyleSheet.create({
     paddingTop:10
   }
 })
+
+const mapStateToProps =(state)=>{
+  return {
+  }
+}
+
+const mapDisPatchToProps=(dispatch)=>{
+  return {
+    
+  }
+}
+export default connect(mapStateToProps,mapDisPatchToProps)(CreateTaskScreen);
